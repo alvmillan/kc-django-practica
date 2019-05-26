@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head_title %} Home {% endblock %}
+{% block main_title %} Latest posts {% endblock %}
+
+{% block main_content %}
+    <br>
+    {% for post in object_list %}
+        <a href="{% url 'post_detail' owner=post.published_on.owner pk=post.pk %}"><h5>{{ post.title }}</h5></a>
+        <small>Published on {{post.creation_date|date:'d/m/Y'}}</small>
+        {%  if post.media_url %}
+            <br>
+         <img src="{{ post.media_url }}" alt="{{ post.title }}" height="200">
+        {% endif %}
+        <p>{{ post.introduction }}</p>
+    {% endfor %}
+{% endblock %}

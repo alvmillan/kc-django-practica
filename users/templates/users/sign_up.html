@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block head_title %} Sign up {% endblock %}
+
+{% block main_title %} Sign up {% endblock %}
+
+{% block main_content %}
+{% for message in messages %}
+    <p style="color: blue"> {{ message }}</p>
+{% endfor %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create account</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,10 @@
+# Entornos virtuales
+env/
+venv/
+
+#PyCharm & VSCode
+
+.idea/
+.vscode/
+
+*.sqlite3

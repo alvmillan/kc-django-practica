@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block main_title %} Blog list {% endblock %}
+
+{% block main_content %}
+    {% for blog in object_list %}
+        <br>
+        <a href="{% url 'blog_detail' blog.owner %}">
+            <h3>{{ blog.name }} <small> by {{ blog.owner }}</small></h3>
+        </a>
+        <p>{{ blog.description }}</p>
+    {% endfor %}
+{% endblock %}

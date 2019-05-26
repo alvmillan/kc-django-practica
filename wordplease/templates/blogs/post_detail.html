@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head_title %} {{post.title}} {% endblock %}
+{% block main_title %} {{post.published_on.name}} {% endblock %}
+
+{% block main_content %}
+    <h3>{{ post.title }} <small>by {{ post.published_on.owner }} on {{post.creation_date|date:'d/m/Y'}}</small></h3>
+
+    {%  if post.media_url %}
+        <br>
+        <img src="{{ post.media_url }}" alt="{{ post.title }}" height="200">
+    {% endif %}
+    <br>
+
+
+    <p>{{ post.introduction }}</p>
+    <p>{{ post.body }}</p>
+
+    <h6>Categories</h6>
+    {% for cat in post.categories.all %}
+        <strong>{{ cat.name }}</strong>
+    {% endfor %}
+    <br>
+{% endblock %}
