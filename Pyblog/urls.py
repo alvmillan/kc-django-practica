@@ -15,9 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework.routers import SimpleRouter
 
+from users.api import UsersViewSet
 from users.views import LoginView, LogoutView, SignUpView
+from wordplease.api import BlogViewSet, PostsViewSet
 from wordplease.views import BlogListView, BlogDetailView, PostListView, PostDetailView, NewPostView
+
+router = SimpleRouter()
+router.register('api/users', UsersViewSet, basename='users_api')
+router.register('api/blogs', BlogViewSet, basename='blogs_api')
+router.register('api/posts', PostsViewSet, basename='posts_api')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +37,4 @@ urlpatterns = [
     path('blogs/<slug:owner>', BlogDetailView.as_view(), name="blog_detail"),
     path('blogs/<slug:owner>/<int:pk>', PostDetailView.as_view(), name="post_detail"),
     path('', PostListView.as_view(), name='home')
-]
+] + router.urls
